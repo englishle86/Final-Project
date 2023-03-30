@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block body %}
+
+<form action="/register" method="post">
+    <div class="p-5 text-center bg-light" style="margin-top: 58px; font-size: 30px">Register to Create an Account</div>
+    <div class="mx-auto mt-2" style="width: 200px">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" name="username" placeholder="What's your name?">
+    </div>
+    <div class="mx-auto mt-2" style="width: 200px">
+        <label for="password">Choose a Password</label>
+        <input type="password" class="form-control" name="password" placeholder="Enter your password">
+    </div>
+    <div class="mx-auto mt-2" style="width: 200px">
+        <label for="confirmation">Confirm Password</label>
+        <input type="password" class="form-control" name="confirmation" placeholder="Confirm your password">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock %}

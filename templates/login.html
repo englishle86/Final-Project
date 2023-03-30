@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block body %}
+
+<form action="/login" method="post">
+    <div class="p-5 text-center bg-light" style="margin-top: 58px; font-size: 30px">Login to Start Tracking</div>
+    <div class="mx-auto mt-2" style="width: 200px">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" name="username" placeholder="What's your name?">
+    </div>
+    <div class="mx-auto mt-2" style="width: 200px">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" name="password" placeholder="Enter your password">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}
