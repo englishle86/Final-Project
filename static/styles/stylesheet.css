@@ -7,3 +7,13 @@ h1 {
 body{
     text-align: center;
 }
+.tableborder{
+    margin-left: 120px;
+    margin-right: 120px;
+    border-left: black;
+    border-right: black;
+}
+
+#jobsmenu{
+    width: 100px;
+}

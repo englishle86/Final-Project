@@ -1,9 +1,10 @@
 from flask import Flask, g, render_template, request, redirect, url_for, session
 from flask_session import Session
-import datetime
-import sqlite3
+from datetime import datetime, timedelta
+
 from werkzeug.security import generate_password_hash, check_password_hash
-from helpers import login_required
+from helpers import login_required, get_jobs, week_of
+
 from flask_sqlalchemy import SQLAlchemy
 import os
 from sqlalchemy import select
@@ -29,23 +30,27 @@ class users(db.Model):
 
 # create function to return a string when we add something
     def __repr__(self):
-        return '<name %r>' % self.id
+        return '<name %r>' % self.id    
+
+jobs = get_jobs()
 
 @app.route("/")
 #@login_required
 def index():
-# --------------- using this instead of login for right now until everything else is working    
-    try:
+# --------------- using this instead of @login_required for right now until everything else is working
+    
+    #try:
         id = session["user_id"]
+        # get values for index display page
         rows = db.session.execute(select(users.username, users.labor_balance).where(users.id == id)).first()
         name = rows[0]
         balance = rows[1]
-        date = datetime.datetime.today().strftime('%m-%d')
-        print(date)
-        return render_template("index.html", name=name, date=date, balance=balance)
+        week = week_of()
+        date = week.strftime("%m-%d-%y")
+        return render_template("index.html", name=name, date=date, balance=balance, jobs=jobs)
 
-    except:
-        return render_template("login.html")
+    #except:
+        #return render_template("login.html")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
